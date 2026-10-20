@@ -101,6 +101,7 @@ export const GAMES_DATA: GameItem[] = [
     ],
     rating: 4.9,
     playCount: 189000,
+    redirectUrl: 'https://apptrck.net/cl/i/x6e939',
   },
   {
     id: 'halo-combat-evolved',
@@ -294,6 +295,7 @@ export const GAMES_DATA: GameItem[] = [
     ],
     rating: 4.9,
     playCount: 215000,
+    redirectUrl: 'https://apptrck.net/cl/i/x6e939',
   },
   {
     id: 'clustertruck',

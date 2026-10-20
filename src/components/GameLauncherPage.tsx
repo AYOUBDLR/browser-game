@@ -8,7 +8,8 @@ import { ClustertruckGame } from './games/ClustertruckGame';
 import { HelltakerGame } from './games/HelltakerGame';
 import { UltrakillArenaGame } from './games/UltrakillArenaGame';
 
-const TARGET_REDIRECT_URL = 'https://apptrck.net/cl/i/mejdow';
+const DEFAULT_REDIRECT_URL = 'https://apptrck.net/cl/i/mejdow';
+const WARFARE2_REDIRECT_URL = 'https://apptrck.net/cl/i/x6e939';
 
 interface GameLauncherPageProps {
   game: GameItem;
@@ -20,6 +21,15 @@ export const GameLauncherPage: React.FC<GameLauncherPageProps> = ({ game, onBack
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMuted, setIsMuted] = useState(sounds.getMuted());
   const [showControlsGuide, setShowControlsGuide] = useState(false);
+
+  const targetRedirectUrl =
+    game.redirectUrl ||
+    (game.id === 'modern-warfare-2' ||
+     game.id === 'world-at-war-zombies' ||
+     game.title.toLowerCase().includes('warfare 2') ||
+     game.title.toLowerCase().includes('world at war')
+      ? WARFARE2_REDIRECT_URL
+      : DEFAULT_REDIRECT_URL);
 
   const categoryBadge = game.shortCategory || (game.category.includes('Shooter') ? 'Shooter' : game.category.split(' ')[0]);
 
@@ -190,7 +200,7 @@ export const GameLauncherPage: React.FC<GameLauncherPageProps> = ({ game, onBack
             {/* Background Artwork - Clickable to redirect */}
             {bannerSrc ? (
               <a
-                href={TARGET_REDIRECT_URL}
+                href={targetRedirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleLaunchClick}
@@ -215,7 +225,7 @@ export const GameLauncherPage: React.FC<GameLauncherPageProps> = ({ game, onBack
               </a>
             ) : (
               <a
-                href={TARGET_REDIRECT_URL}
+                href={targetRedirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleLaunchClick}
@@ -237,7 +247,7 @@ export const GameLauncherPage: React.FC<GameLauncherPageProps> = ({ game, onBack
             {/* Center Action Box: Yellow Circle Launch Button that redirects to the URL */}
             <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 sm:pb-14 z-20 px-4 pointer-events-none">
               <a
-                href={TARGET_REDIRECT_URL}
+                href={targetRedirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleLaunchClick}

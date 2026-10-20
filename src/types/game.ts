@@ -52,4 +52,5 @@ export interface GameItem {
   bannerImage?: string;
   hostDomain?: string;
   shortCategory?: string;
+  redirectUrl?: string;
 }
